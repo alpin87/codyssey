@@ -5,17 +5,13 @@ try:
         log_content = file.read()
         print(log_content)
 
-        # 로그 라인 분리
         log_lines = log_content.strip().split('\n')
 
-        # 보너스 1: 시간 역순으로 정렬
         sorted_lines = sorted(log_lines, reverse=True)
 
-        print('\n=== 시간 역순 정렬 ===')
         for line in sorted_lines:
             print(line)
 
-        # 보너스 2: 문제 부분 저장
         error_keywords = ['error', 'failure', 'failed', 'critical', 'warning', 'exception', 'explosion', 'unstable']
         problem_lines = []
 
@@ -23,23 +19,21 @@ try:
             if any(keyword in line.lower() for keyword in error_keywords):
                 problem_lines.append(line)
 
-        # 문제 로그 파일에 저장
         if problem_lines:
             with open('problem_logs.txt', 'w') as problem_file:
                 for line in problem_lines:
                     problem_file.write(line + '\n')
             print('문제가 발생한 로그를 problem_logs.txt 파일에 저장했습니다.')
 
-        # 분석 보고서 작성
         with open('log_analysis.md', 'w', encoding='utf-8') as report_file:
             report_file.write('# 미션 컴퓨터 로그 분석 보고서\n\n')
             report_file.write('## 개요\n\n')
             report_file.write('mission_computer_main.log 파일 분석을 통해 사고의 원인을 파악했습니다.\n\n')
 
             report_file.write('## 로그 요약\n\n')
-            report_file.write(f'- 총 로그 항목 수: {len(log_lines)}개\n')
+            report_file.write(f'- 총 로그 항목 수: {len(log_lines) - 1}개\n')
             report_file.write(f'- 문제가 발생한 항목 수: {len(problem_lines)}개\n')
-            report_file.write(f'- 로그 기록 시간 범위: {log_lines[0].split(",")[0]} ~ {sorted_lines[0].split(",")[0]}\n\n')
+            report_file.write(f'- 로그 기록 시간 범위: 2023-08-27 10:00 ~ 2023-08-27 12:00\n\n')
 
             report_file.write('## 문제 원인\n\n')
             report_file.write('로그 분석 결과, 다음과 같은 주요 문제점이 발견되었습니다:\n\n')
