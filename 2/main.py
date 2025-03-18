@@ -34,8 +34,7 @@ try:
         print("\n위험 항목이 Mars_Base_Inventory_danger.csv 파일에 저장되었습니다.")
     except Exception as e:
         print(f"CSV 파일 저장 중 오류 발생: {e}")
-    
-    # 보너스 과제 1: 간단히 이진 파일로 저장
+
     try:
         with open('Mars_Base_Inventory_List.bin', 'wb') as f:
             full_data = [header] + sorted_data
