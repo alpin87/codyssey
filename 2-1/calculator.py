@@ -1,4 +1,3 @@
-import sys
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, 
                              QVBoxLayout, QGridLayout, QPushButton, QLabel)
 from PyQt5.QtCore import Qt, QSize
@@ -9,8 +8,8 @@ class CalculatorWindow(QMainWindow):
     
     def __init__(self):
         super().__init__()
-
-        self.setWindowTitle('계산기')
+        
+        self.setWindowTitle('아이폰 계산기')
         self.setMinimumSize(300, 500)
         
         self.reset_calc()
@@ -31,7 +30,7 @@ class CalculatorWindow(QMainWindow):
         main_layout = QVBoxLayout(central_widget)
         main_layout.setSpacing(0)
         main_layout.setContentsMargins(0, 0, 0, 0)
-
+        
         self.result_label = QLabel(self.display_value)
         self.result_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         self.result_label.setFont(QFont('Arial', 48))
@@ -192,7 +191,6 @@ class CalculatorWindow(QMainWindow):
         value = float(self.display_value)
         value = -value
         
-        # 정수인 경우 소수점 제거
         if value.is_integer():
             value = int(value)
         
@@ -202,7 +200,7 @@ class CalculatorWindow(QMainWindow):
     def on_percent(self, _):
         value = float(self.display_value)
         value = value / 100
-
+        
         if value.is_integer():
             value = int(value)
         
@@ -211,10 +209,10 @@ class CalculatorWindow(QMainWindow):
 
 
 def main():
-    app = QApplication(sys.argv)
+    app = QApplication([])
     calculator = CalculatorWindow()
     calculator.show()
-    sys.exit(app.exec_())
+    app.exec_()
 
 
 if __name__ == '__main__':
