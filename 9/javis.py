@@ -11,11 +11,11 @@ def get_audio_files():
     return files
 
 
-def audio_to_text(audio_file):
+def audio_to_text(files):
     r = sr.Recognizer()
     
     try:
-        with sr.AudioFile(audio_file) as source:
+        with sr.AudioFile(files) as source:
             audio = r.record(source)
             text = r.recognize_google(audio, language='ko-KR')
             return text
